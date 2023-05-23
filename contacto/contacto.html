@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/Proyecto%20fin%20de%20grado/contacto/contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <title>Contacto</title>
+  
+</head>
+<body>
+<header>
+        <div class="container">
+        
+          <a href="/Proyecto%20fin%20de%20grado/info/infoMalaga.html"><h1>CONTÁCTANOS</h1></a>
+          <nav>
+            <ul class="menu">
+              <li><a href="/Proyecto%20fin%20de%20grado/empezar.html">volver a Menú</a></li>
+              <li><a href="/Proyecto%20fin%20de%20grado/admin/registrar.php">Administrador</a></li>
+            </ul>
+          
+          </nav>
+        </div>
+    
+        <div class="logo">
+          <a href="/Proyecto%20fin%20de%20grado/empezar.html"><img src="/Proyecto fin de grado/inicio_img/andalucia.png" alt="Logo"></a>
+          
+        </div>
+    
+      </header>
+      <main>
+        <h1 class="titulo">¿Algún problema , no dudes en decírnoslo?</h1> 
+        <div class="contact-form">
+
+            <h2>Rellena tus datos</h2>
+            <form id="contactForm">
+              <input type="text" name="nombre" placeholder="Nombre" required>
+              <input type="text" name="email" placeholder="Correo electrónico" required>
+              <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+
+          <div class="parrafo">
+            <div class="box">
+              <p>Al rellenar este formulario, aceptas nuestra política de privacidad.
+                Nos importas tu y nos importan tus datos.
+              </p>
+            </div>
+          </div>
+
+          <script>
+            // Evento de envío del formulario
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+              event.preventDefault(); // Evita el envío por defecto del formulario
+        
+              // Obtiene los valores de los campos de entrada
+              var nombre = document.getElementsByName("nombre")[0].value;
+              var email = document.getElementsByName("email")[0].value;
+              var mensaje = document.getElementsByName("mensaje")[0].value;
+        
+              // Construye el enlace de correo electrónico
+              var mailtoLink = "mailto:franciscohl2003@gmail.com" +
+                               "?subject=Formulario de Contacto" +
+                               "&body=Nombre: " + encodeURIComponent(nombre) +
+                               "%0AEmail: " + encodeURIComponent(email) +
+                               "%0AMensaje: " + encodeURIComponent(mensaje);
+        
+              // Abre el enlace de correo electrónico en una nueva ventana o pestaña
+              window.open(mailtoLink);
+        
+              // Restablece los valores del formulario
+              document.getElementById("contactForm").reset();
+            });
+          </script>
+        
+      </main>
+      <footer>
+      <div class="container">
+        <ul class="social-media">
+          <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <div class="links">
+          <a href="#">Aviso legal</a>
+          <a href="#">Sobre cookies</a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
+
+ 
+</body>
+</html>

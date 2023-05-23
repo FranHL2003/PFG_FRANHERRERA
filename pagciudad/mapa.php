@@ -1,0 +1,234 @@
+<?php
+if(isset($_GET["ciudad"])){
+    $ciudad = $_GET["ciudad"];
+}else{
+    $ciudad="Malaga";
+};
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>MAPA DE <?=$ciudad ?> </title>
+    <style>
+
+        .elemento{
+            border-bottom: 5px solid #d39d51;
+            cursor: pointer;
+        
+        
+        }
+        
+        h1{
+          color:white;
+        }
+        .direccionYtelefono{
+            display: flex;
+        }
+        .tarjeta{
+            margin-right: 2%;
+            color: rgb(255, 255, 255);
+            background-color:#d39d51;
+            padding: 0 2%;
+            border-radius: 5px;
+        }
+        
+        
+        
+        body{
+        background: linear-gradient(#ffe6c1, #bbffd0);
+            
+          }
+        
+        
+        #mapa{
+            height: 100vh;
+        }
+        .listado{
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .row{
+            padding: 0;
+            margin: 0;
+        }
+        
+        /*footer y header*/
+        a{text-decoration: none;
+            color:white}
+            header {
+              background-color: #1abc9c;
+              color: #fff;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 20px;
+              width: 100%;
+            }
+            
+            .container {
+              flex: 1;
+            }
+            .logo img {
+              max-width: 60px;
+              height: auto;
+            }
+            
+            .logo {
+              margin-left: auto;
+             
+            }
+            .logo {
+              margin-right: 70px;
+            }
+              
+             
+          .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+          
+          .menu li {
+            margin-left: 20px;
+          }
+          
+          .menu li:first-child {
+            margin-left: 0;
+          }
+          
+          .menu li a {
+            color: #fff;
+            text-decoration: none;
+          }
+        
+          h1{   color: #fff;
+            text-decoration: none;}
+          footer {
+            background-color: #1abc9c;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 20px;
+          width: 100%;
+          }
+          
+          .social-media {
+            list-style: none;
+            display: flex;
+          }
+          
+          .social-media li {
+            margin-right: 20px;
+          }
+          
+          .social-media li a {
+            color: #fff;
+            text-decoration: none;
+            width: 100px;
+          }
+          
+          .links a {
+            margin-left: 20px;
+        
+            color: #fff;
+            text-decoration: none;
+          }
+            </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+    
+      <a href="/Proyecto%20fin%20de%20grado/inicio.html"><h1><?=$ciudad?></h1></a>
+      <nav>
+        <ul class="menu">
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Galería</a></li>
+          <li><a href="#">Curiosidades</a></li>
+        </ul>
+      
+      </nav>
+    </div>
+
+    <div class="logo">
+      <a href="https://www.booking.com/city/es/almeria.es.html?aid=1610682;gclid=CjwKCAjwge2iBhBBEiwAfXDBR-MyUt9iMlPMIW3Uz9zukpAoECF2T95yy_7HWB47Z7n6ms5d3R6WqRoCAdQQAvD_BwE;label=almeria-WYyeTcVwRcs2Nz577Trk2wS438044988223%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-298697779622%3Alp1005419%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YfpWGnRw6lOGdE15X_QAcTg;ws=;gad=1"><img src="/Proyecto fin de grado/inicio_img/maleta.png" alt="Logo"></a>
+      
+    </div>
+    
+  </header>
+  <main>
+
+    <div class="contenedor">
+        <div class="row vh-100">
+            <div class="col-3 listado" id="listaElementos">
+                <template id="elementoLista">
+                    <div class="p-3 elemento" id="elemento" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div id="nombre" class="h5"></div>
+                       <div id="ciudad" color="#0E6655 " ></div>
+                       <div id="categoria" class="mb-3"></div>
+                        <div class="direccionYtelefono">
+            
+                            <div id="direccion" class="tarjeta"></div>
+                            <div id="telefono"></div>
+                            <div id="horario" class="tarjeta"></div>
+                            <div id="ver" href=""></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </template>
+
+
+            </div>
+            <div class="col mapa">
+                <div id="mapa"></div>
+            </div>
+        </div>
+    </div>
+
+  
+  
+
+
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+      </main>
+      <footer>
+        <div class="container">
+          <ul class="social-media">
+            <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+          <div class="links">
+            <a href="#">Aviso legal</a>
+            <a href="#">Sobre cookies</a>
+          </div>
+        </div>
+      </footer>
+    
+    <script src="/Proyecto%20fin%20de%20grado/pagciudadjs/mapaAlmeria.js"></script>
+    <script>
+      loadMapa("<?=$ciudad,$centro?>");
+    </script> 
+</body>
+
+</html>
