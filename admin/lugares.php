@@ -7,7 +7,33 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/Proyecto%20fin%20de%20grado/admin/lugares.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>lugares</title>
+    <style>form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}</style>
 </head>
+
 
 <body>
 <header>
@@ -32,12 +58,25 @@
   <main>
     <h1 class="titulo">CONJUNTO DE LUGARES</h1>
 
+    <form method="GET" action="">
+    <input type="text" name="ciudad" placeholder="Buscar por ciudad" value="<?php echo isset($_GET['ciudad']) ? htmlspecialchars($_GET['ciudad']) : ''; ?>">
+
+   <button type="submit">Buscar</button>
+</form>
+
+
+
+
     <?php
     // Conexión a la base de datos
     $conexion = mysqli_connect('localhost', 'root', '', 'ciudades');
     if (!$conexion) {
         die('Error al conectar a la base de datos: ' . mysqli_error($conexion));
     }
+   
+    
+
+
 
     // Paginación
     $registrosPorPagina = 10;
@@ -53,37 +92,53 @@
     // Calcular el número de páginas
     $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
-    // Obtener los registros para la página actual
-    $consulta = "SELECT * FROM ciudades LIMIT $inicio, $registrosPorPagina";
-    $resultado = mysqli_query($conexion, $consulta);
+    
 
-    // Mostrar la tabla de datos
-    if (mysqli_num_rows($resultado) > 0) {
-        echo '<div class="container">';
-        echo '<table>';
-        echo '<tr><th>ID</th><th>Ciudad</th><th>Nombre</th><th>Dirección</th><th>Categoría</th><th>Horario</th><th>Teléfono</th><th>X</th><th>Y</th><th>Acciones</th></tr>';
+    // Obtener el valor de búsqueda si se ha enviado
+$ciudadBuscada = isset($_GET['ciudad']) ? $_GET['ciudad'] : '';
 
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            echo '<tr>';
-            echo '<td>' . $fila['id'] . '</td>';
-            echo '<td>' . $fila['ciudad'] . '</td>';
-            echo '<td>' . $fila['nombre'] . '</td>';
-            echo '<td>' . $fila['direccion'] . '</td>';
-            echo '<td>' . $fila['categoria'] . '</td>';
-            echo '<td>' . $fila['horario'] . '</td>';
-            echo '<td>' . $fila['telefono'] . '</td>';
-            echo '<td>' . $fila['x'] . '</td>';
-            echo '<td>' . $fila['y'] . '</td>';
-            echo "<td><a href='actualizar.php?id=" . $fila['id'] . "'>Actualizar</a></td>";
-            echo "<td><a href='borrar.php?id=" . $fila['id'] . "'>Borrar</a></td>"; 
-            echo '</tr>';
-        }
+// Consulta para obtener el total de registros coincidentes
+$consultaTotal = "SELECT COUNT(*) AS total FROM ciudades WHERE ciudad LIKE '%$ciudadBuscada%'";
 
-        echo '</table>';
-        echo '</div>';
-    } else {
-        echo 'No se encontraron registros.';
+// Ejecutar la consulta para obtener el total de registros
+$resultadoTotal = mysqli_query($conexion, $consultaTotal);
+$filaTotal = mysqli_fetch_assoc($resultadoTotal);
+$totalRegistros = $filaTotal['total'];
+
+// Calcular el número de páginas
+$totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+
+// Obtener los registros para la página actual
+$consulta = "SELECT * FROM ciudades WHERE ciudad LIKE '%$ciudadBuscada%' LIMIT $inicio, $registrosPorPagina";
+$resultado = mysqli_query($conexion, $consulta);
+
+// Mostrar la tabla de datos
+if (mysqli_num_rows($resultado) > 0) {
+    echo '<div class="container">';
+    echo '<table>';
+    echo '<tr><th>ID</th><th>Ciudad</th><th>Nombre</th><th>Dirección</th><th>Categoría</th><th>Horario</th><th>Teléfono</th><th>X</th><th>Y</th><th>Acciones</th></tr>';
+
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        echo '<tr>';
+        echo '<td>' . $fila['id'] . '</td>';
+        echo '<td>' . $fila['ciudad'] . '</td>';
+        echo '<td>' . $fila['nombre'] . '</td>';
+        echo '<td>' . $fila['direccion'] . '</td>';
+        echo '<td>' . $fila['categoria'] . '</td>';
+        echo '<td>' . $fila['horario'] . '</td>';
+        echo '<td>' . $fila['telefono'] . '</td>';
+        echo '<td>' . $fila['x'] . '</td>';
+        echo '<td>' . $fila['y'] . '</td>';
+        echo "<td><a href='actualizar.php?id=" . $fila['id'] . "'>Actualizar</a></td>";
+        echo "<td><a href='borrar.php?id=" . $fila['id'] . "'>Borrar</a></td>";
+        echo '</tr>';
     }
+
+    echo '</table>';
+    echo '</div>';
+} else {
+    echo 'No se encontraron registros.';
+}
 
 
 
@@ -91,13 +146,14 @@
 
 
 // Mostrar la paginación
+// Mostrar la paginación
 echo '<div class="pagination">';
 if ($totalPaginas > 1) {
     echo '<span>Páginas:</span>';
     if ($paginaActual > 1) {
-        echo '<a href="?pagina=1">Primera</a>';
+        echo '<a href="?pagina=1&ciudad=' . urlencode($ciudadBuscada) . '">Primera</a>';
         $anterior = $paginaActual - 1;
-        echo '<a href="?pagina=' . $anterior . '">Anterior</a>';
+        echo '<a href="?pagina=' . $anterior . '&ciudad=' . urlencode($ciudadBuscada) . '">Anterior</a>';
     }
 
     $rangoInicio = $paginaActual - 3;
@@ -108,7 +164,7 @@ if ($totalPaginas > 1) {
             if ($i == $paginaActual) {
                 echo '<span class="current">' . $i . '</span>';
             } else {
-                echo '<a href="?pagina=' . $i . '">' . $i . '</a>';
+                echo '<a href="?pagina=' . $i . '&ciudad=' . urlencode($ciudadBuscada) . '">' . $i . '</a>';
             }
         } elseif ($i == $rangoInicio - 1 || $i == $rangoFin + 1) {
             echo '<span class="dots">...</span>';
@@ -117,10 +173,12 @@ if ($totalPaginas > 1) {
 
     if ($paginaActual < $totalPaginas) {
         $siguiente = $paginaActual + 1;
-        echo '<a href="?pagina=' . $siguiente . '">Siguiente</a>';
-        echo '<a href="?pagina=' . $totalPaginas . '">Última</a>';
+        echo '<a href="?pagina=' . $siguiente . '&ciudad=' . urlencode($ciudadBuscada) . '">Siguiente</a>';
+        echo '<a href="?pagina=' . $totalPaginas . '&ciudad=' . urlencode($ciudadBuscada) . '">Última</a>';
     }
 }
+echo '</div>';
+
 echo '</div>';
 
 // ...
@@ -130,6 +188,7 @@ echo '</div>';
     // Cerrar conexión a la base de datos
     mysqli_close($conexion);
     ?>
+   
 
     <a href="insertar.php" class="btn-insertar">Insertar</a>
     <p>copyright</p>
