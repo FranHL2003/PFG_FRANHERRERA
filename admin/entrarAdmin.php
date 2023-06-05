@@ -34,6 +34,8 @@
       <h2 class="titulo"><h2>
       <div class="container2">
         <h2>Iniciar sesión</h2>
+
+
         <form action="verificar.php" method="post">
             <label>Correo:</label>
             <input type="email" name="correo" required><br><br>

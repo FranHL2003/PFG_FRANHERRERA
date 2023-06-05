@@ -17,10 +17,18 @@ text-decoration: none;
 .tarjeta{
   margin-right: 2%;
   color: rgb(255, 255, 255);
-  background-color:#d39d51;
+  background-color:#0d8523;
   padding: 0 2%;
   border-radius: 5px;
 }
+.tarjeta1{
+  margin-right: 2%;
+  color: rgb(255, 255, 255);
+  background-color:#0ddde1;
+  padding: 0 2%;
+  border-radius: 5px;
+}
+
 
 
 

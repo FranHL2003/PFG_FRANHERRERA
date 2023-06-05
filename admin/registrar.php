@@ -40,6 +40,7 @@
         <label>Contraseña:</label>
         <input type="password" name="contrasena" required><br><br>
         <input type="submit" value="Registrarse">
+        <input href="/Proyecto%20fin%20de%20grado/admin/entrarAdmin.php" type="submit" value="Ya tengo cuenta">
     </form>
         
            

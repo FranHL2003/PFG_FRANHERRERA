@@ -1,15 +1,28 @@
 
-
-
-
-
-var map = L.map('mapa').setView([36.5241, -6.2790], 14);
+var map = L.map('mapa');
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     minZoom: 14,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+function setMapCenter(lat, lng) {
+    map.setView([lat, lng], 14);
+}
 
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        if (data.length > 0) {
+            setMapCenter(data[0].x, data[0].y);
+        }
+       
+    }
+};
+xmlhttp.open("GET", "http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/test.php?province=" + provincia + "&tag=" + tag, true);
+
+
+xmlhttp.send();
 
 
 var lista = []
@@ -17,17 +30,12 @@ var elementoSeleccionado = 0;
 
 
 
-
-
-
 function cargarModal(){
     let elemento = lista[0]
 
-
 }
 
-
-fetch("http://localhost/Proyecto%20fin%20de%20grado/test.php?province=Cadiz")
+fetch("http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/test.php?province=" + provincia+"&tag=" +tag)
     .then(res => res.json())
     .then(data => {
         const tbody = document.querySelector("#listaElementos");
@@ -52,7 +60,6 @@ fetch("http://localhost/Proyecto%20fin%20de%20grado/test.php?province=Cadiz")
             }
             tbody.appendChild(clone);
 
-
             let elemento = {
                 nombre: data[i].nombre,
                 horario: data[i].horario,
@@ -61,22 +68,17 @@ fetch("http://localhost/Proyecto%20fin%20de%20grado/test.php?province=Cadiz")
                 telefono: data[i].telefono,
                 ciudad: data[i].ciudad,
 
-
             }
             lista.push(elemento)
-           
-            template.addEventListener('click',
+            
+            template.addEventListener('click', 
                 cargarModal()
             )
-
 
             var marcador = L.marker([data[i].x, data[i].y]).addTo(map);
             marcador.bindPopup(`${data[i].nombre}`);
 
-
         }
-
-
 
 
     })
@@ -86,20 +88,9 @@ fetch("http://localhost/Proyecto%20fin%20de%20grado/test.php?province=Cadiz")
 
 
 
-
-
-
-
-
-
    // http://localhost/Proyecto%20fin%20de%20grado/test.php?province=jaen
 
-
-   
-
-
-
-
+    
 
 
 

@@ -21,12 +21,13 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Los datos coinciden, usuario autenticado
-    echo "Inicio de sesión exitoso. ¡Estás dentro!";
+    echo "Inicio de sesión exitoso. ¡Estás dentro! Disfruta.";
     // Redirigir a otra página
-    header("Location:/Proyecto%20fin%20de%20grado/admin/lugares.php");
+    header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/lugares.php");
 } else {
     // Los datos no coinciden, usuario no autenticado
-    echo "Correo o contraseña incorrectos";
+    echo "Correo o contraseña incorrectos, prueba de nuevo";
+    header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/entrarAdmin.php");
 }
 
 // Cerrar la conexión a la base de datos

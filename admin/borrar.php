@@ -18,9 +18,11 @@
 
         // Verificar si se pudo borrar el registro
         if ($resultado) {
-            echo 'El registro se ha borrado correctamente.';
+            echo "registro borrado exitosamente";
+            header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/lugares.php");
         } else {
             echo 'Error al borrar el registro: ' . mysqli_error($conexion);
+            header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/lugares.php");
         }
 
         // Cerrar conexión a la base de datos

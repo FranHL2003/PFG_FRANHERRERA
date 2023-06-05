@@ -24,7 +24,8 @@ if (isset($_POST['id']) && isset($_POST['ciudad']) && isset($_POST['nombre']) &&
 
     // Verificar si se pudo actualizar el registro
     if ($resultado) {
-        echo 'El registro se ha actualizado correctamente.';
+        echo 'DATOS ACTUALIZADOS';
+        header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/lugares.php");
     } else {
         echo 'Error al actualizar el registro: ' . mysqli_error($conexion);
     }
@@ -32,6 +33,7 @@ if (isset($_POST['id']) && isset($_POST['ciudad']) && isset($_POST['nombre']) &&
     // Cerrar conexión a la base de datos
     mysqli_close($conexion);
 } else {
-    echo 'Datos incompletos. No se puede realizar la actualización.';
+    echo 'ERROR AL ACTUALIZAR';
+    header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/actualizar.php");
 }
 ?>

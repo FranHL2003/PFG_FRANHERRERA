@@ -23,9 +23,11 @@ if (isset($_POST['ciudad']) && isset($_POST['nombre']) && isset($_POST['direccio
 
     // Verificar si se pudo insertar el registro
     if ($resultado) {
-        echo 'El registro se ha insertado correctamente.';
+        echo "registro insertado exitosamente";
+        header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/lugares.php");
     } else {
         echo 'Error al insertar el registro: ' . mysqli_error($conexion);
+        header("refresh:0.5;url=/Proyecto%20fin%20de%20grado/admin/insertar.php");
     }
 
     // Cerrar conexión a la base de datos

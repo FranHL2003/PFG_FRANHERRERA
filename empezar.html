@@ -8,6 +8,109 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>index.html</title>
     <head>
+      <style>.description {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 35px; /* Aumenta el valor del padding para más espacio interno */
+  background-color: rgba(179, 164, 53, 0.445);
+  color: #0c1202;
+  text-align: center;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+  width: 300px; /* Ajusta el ancho según tus necesidades */
+  height: 150px;
+
+ 
+} 
+
+
+.city-name {
+  position: absolute;
+  text-align: center;
+  top: -20px;
+  left: 230px;
+  color: #3c003a;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .city-name {
+    top: -20px;
+    left: auto;
+    right: 10px;
+    text-align: right;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 4;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body {
+    background: linear-gradient(to bottom, #173b01, #3c003a);
+    font-family: Arial, sans-serif;
+    margin:0;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #389a00;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(122, 142, 88, 0.406);
+  z-index: 1;
+  column-count: 2;
+  column-gap: 10px;
+  padding: 10px;
+}
+
+.dropdown-content a {
+  display: block;
+  margin-bottom: 5px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .dropdown-content {
+    column-count: 2;
+  }
+}
+.dropdown-content a:hover {
+  background-color: #c2e4a1;
+}
+
+
+      </style>
  
 </head>
 <body>
@@ -19,6 +122,7 @@
             <ul class="menu">
               <li><a href="http://localhost/Proyecto%20fin%20de%20grado/admin/registrar.php">Administrador</a></li>
               <li><a href="\Proyecto fin de grado\contacto\contacto.html">Contacto</a></li>
+              <li><a href="\Proyecto fin de grado\info\mapaAndalucia.html">Curiosidades</a></li>
             </ul>
           
           </nav>
@@ -33,94 +137,196 @@
       
         <main >
     <div class="collage">
-      <div class="photo same-size">
+      <div class="photo">
         <div class="shape"></div>
-        <img src="/Proyecto fin de grado/inicio_img/Granada.jpg" alt="Imagen 1">
+        <img src="/Proyecto fin de grado/inicio_img/Granada.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
           <h3 class="city-name">Granada</h3>
           <div class="description">
-            <p>ver mapa de la ciudad de Granada.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaGranada.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Granada:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Granada&tag=Estadio">Estadios</a>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
       <div class="photo">
         <div class="shape"></div>
         <img src="/Proyecto fin de grado/inicio_img/Malaga.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
           <h3 class="city-name">Málaga</h3>
           <div class="description">
-            <p>ver mapa de la ciudad de Málaga.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaMalaga.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Málaga:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Estadio">Estadios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Malaga&tag=Puerto">Puerto</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
+      
+      
+  
       <div class="photo">
         <div class="shape"></div>
-        <img src="/Proyecto fin de grado/inicio_img/Cadiz.jpg" alt="Imagen 3">
+        <img src="/Proyecto fin de grado/inicio_img/Cadiz.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
           <h3 class="city-name">Cádiz</h3>
           <div class="description">
-            <p>ver mapa de la ciudad de Cádiz.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaCadiz.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Cádiz:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Estadio">Estadios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cadiz&tag=Puerto">Puerto</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="photo">
         <div class="shape"></div>
-        <img src="/Proyecto fin de grado/inicio_img/Jaen.jpg" alt="Imagen 4" class="same-size">
+        <img src="/Proyecto fin de grado/inicio_img/Malaga.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
-          <h3 class="city-name">Jaén</h3>
+          <h3 class="city-name">Jaen</h3>
           <div class="description">
-            <p>ver mapa de la ciudad de Jaen.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaJaen.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Jaen:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Jaen&tag=Estadio">Estadios</a>
+       
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="photo">
         <div class="shape"></div>
-        <img src="/Proyecto fin de grado/inicio_img/Cordoba.jpg" alt="Imagen 5">
+        <img src="/Proyecto fin de grado/inicio_img/Cordoba.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
           <h3 class="city-name">Córdoba</h3>
           <div class="description">
-            <p>ver mapa de la ciudad de Córdoba.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaCordoba.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Córdoba:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Cordoba&tag=Estadio">Estadios</a>
+     
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="photo">
         <div class="shape"></div>
-        <img src="/Proyecto fin de grado/inicio_img/Almeria.jpg" alt="Imagen 6" class="same-size">
+        <img src="/Proyecto fin de grado/inicio_img/Almeria.jpg" alt="Imagen 2" class="same-size">
         <div class="overlay">
           <h3 class="city-name">Almería</h3>
           <div class="description">
-          <p>ver mapa de la ciudad de Almería.</p>
-            <a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaAlmeria.html">Ver más</a>
+            <p>Ver mapas de la ciudad de Almería:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Estadio">Estadios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Almeria&tag=Puerto">Puerto</a>
+              </div>
             </div>
-         </div>
+          </div>
         </div>
-       <div class="photo">
-<div class="shape"></div>
-<img src="/Proyecto fin de grado/inicio_img/Sevilla.jpg" alt="Imagen 7">
-<div class="overlay">
-<h3 class="city-name">Sevilla</h3>
-<div class="description">
-<p>ver mapa de la  ciudad de Sevilla.</p>
-<a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaSevilla.html">Ver más</a>
-</div>
-</div>
-       </div>
-<div class="photo">
-<div class="shape"></div>
-<img src="/Proyecto fin de grado/inicio_img/Huelva.jpg" alt="Imagen 8">
-<div class="overlay">
-<h3 class="city-name">Huelva</h3>
-<div class="description">
-<p>ver mapa de la ciudad de Huelva.</p>
-<a class="button" href="/Proyecto%20fin%20de%20grado/pagciudad/mapaHuelva.html">Ver más</a>
-</div>
-</div>
-</div>
+      </div>
+      <div class="photo">
+        <div class="shape"></div>
+        <img src="/Proyecto fin de grado/inicio_img/Sevilla.jpg" alt="Imagen 2" class="same-size">
+        <div class="overlay">
+          <h3 class="city-name">Sevilla</h3>
+          <div class="description">
+            <p>Ver mapas de la ciudad de Sevilla:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Estadio">Estadios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Sevilla&tag=Puerto">Puerto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <div class="shape"></div>
+        <img src="/Proyecto fin de grado/inicio_img/Huelva.jpg" alt="Imagen 2" class="same-size">
+        <div class="overlay">
+          <h3 class="city-name">Huelva</h3>
+          <div class="description">
+            <p>Ver mapas de la ciudad de Huelva:</p>
+            <div class="dropdown">
+              <button class="dropbtn">Mapas</button>
+              <div class="dropdown-content">
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Parque">Parques</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Iglesia">Iglesias</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Palacio">Palacios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Edificio Historico">Históricos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Monumento">Monumentos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Museo">Museos</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Estadio">Estadios</a>
+                <a href="http://localhost/Proyecto%20fin%20de%20grado/pagciudadjs/mapaprovincia.php?provincia=Huelva&tag=Puerto">Puerto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
   </div>
 </main>
